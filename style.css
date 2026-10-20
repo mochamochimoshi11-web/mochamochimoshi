@@ -1,0 +1,309 @@
+@font-face {
+  font-family: 'Persona3Font';
+  src: url('https://files.catbox.moe/cekrz6.otf') format('opentype');
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Persona3Font', sans-serif;
+  user-select: none;
+  background-color: #000;
+}
+
+/* Fullscreen Screen Container */
+.game-screen {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Original Fullscreen Background Video */
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.blue-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 30, 80, 0.12);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Money Box */
+.funds-box {
+  position: absolute;
+  top: 20px;
+  left: 70px;
+  background: #fff;
+  border: 1px solid #dcdcdc;
+  padding: 8px 24px 6px 16px;
+  z-index: 10;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.money-amount {
+  font-family: 'Persona3Font', sans-serif;
+  font-size: 1.7rem;
+  color: #000;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.money-label {
+  font-family: sans-serif;
+  font-size: 0.68rem;
+  color: #555;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+/* Menu Position */
+.p3-menu {
+  position: absolute;
+  top: 27%;
+  left: 41%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: flex-start;
+  z-index: 10;
+}
+
+/* Original Persona Font and Size */
+.menu-item {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #38dcff;
+
+  font-family: 'Persona3Font', sans-serif !important;
+  font-size: 2.3rem;
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 0.86;
+
+  cursor: pointer;
+  padding: 2px 16px;
+  margin: 0;
+  text-align: left;
+  text-transform: uppercase;
+  text-shadow: none;
+  transition: color 0.1s ease;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Red Angled Highlight */
+.menu-item::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: -8px;
+  right: 100%;
+  background: #ff0033;
+  clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
+  opacity: 0;
+  transition: right 0.12s ease-out, opacity 0.08s linear;
+}
+
+/* Hover / Selected State — Same Font Size */
+.menu-item:hover,
+.menu-item.active {
+  color: #fff !important;
+  font-size: 2.3rem !important;
+  padding: 2px 16px;
+  margin: 0;
+  text-shadow: 1px 1px 0 #a90025;
+}
+
+.menu-item:hover::before,
+.menu-item.active::before {
+  right: -20px;
+  opacity: 1;
+}
+
+/* Original Individual Angles and Offsets */
+.menu-item:nth-child(1) {
+  transform: skewX(-14deg) rotate(-2deg) translateX(25px);
+}
+
+.menu-item:nth-child(2) {
+  transform: skewX(-18deg) rotate(1deg) translateX(0);
+}
+
+.menu-item:nth-child(3) {
+  transform: skewX(-15deg) rotate(-1deg) translateX(15px);
+}
+
+.menu-item:nth-child(4) {
+  transform: skewX(-20deg) rotate(-3deg) translateX(-5px);
+}
+
+.menu-item:nth-child(5) {
+  transform: skewX(-14deg) rotate(2deg) translateX(20px);
+}
+
+.menu-item:nth-child(6) {
+  transform: skewX(-16deg) rotate(-1deg) translateX(0);
+}
+
+.menu-item:nth-child(7) {
+  transform: skewX(-18deg) rotate(1.5deg) translateX(10px);
+}
+
+.menu-item:nth-child(8) {
+  transform: skewX(-13deg) rotate(-2deg) translateX(-10px);
+}
+
+.menu-item:nth-child(9) {
+  transform: skewX(-17deg) rotate(0deg) translateX(5px);
+}
+
+/* Bottom Right Guide Text */
+.bottom-guide {
+  position: absolute;
+  bottom: 25px;
+  right: 40px;
+  text-align: right;
+  z-index: 10;
+  color: #fff;
+}
+
+.action-text {
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+
+.controls-hint {
+  font-size: 0.85rem;
+  color: #dcdcdc;
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+}
+
+/* Modal Screen */
+.page-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(3, 13, 26, 0.95);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  padding: 50px 80px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+  color: #fff;
+}
+
+.page-screen.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.back-button {
+  background: transparent;
+  border: 2px solid #38dcff;
+  color: #38dcff;
+  font-family: 'Persona3Font', sans-serif;
+  padding: 8px 18px;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-bottom: 20px;
+  transition: 0.1s;
+}
+
+.back-button:hover {
+  background: #38dcff;
+  color: #000;
+}
+
+.page-screen .small-label {
+  color: #ff0033;
+  letter-spacing: 2px;
+}
+
+.page-screen h1 {
+  font-family: 'Persona3Font', sans-serif;
+  font-size: 3.5rem;
+  color: #38dcff;
+  margin-bottom: 20px;
+}
+
+#page-description {
+  width: 100%;
+  flex-grow: 1;
+}
+
+.custom-textarea {
+  width: 100%;
+  height: 60vh;
+  background: #020c1a;
+  border: 2px solid #1a3b66;
+  border-left: 8px solid #ff0033;
+  color: #fff;
+  padding: 20px;
+  font-size: 1.1rem;
+  font-family: inherit;
+  resize: none;
+  outline: none;
+}
+
+.custom-textarea:focus {
+  border-color: #38dcff;
+}
+
+/* Rotate Phone Message */
+.rotate-message {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: 1000;
+  color: #fff;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+@media screen and (orientation: portrait) {
+  .rotate-message {
+    display: flex;
+  }
+}

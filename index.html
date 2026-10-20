@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <div class="game-screen">
+  <video class="background-video" autoplay muted loop playsinline>
+    <source src="https://yourimageshare.com/ib/arrWziz5C1.mp4" type="video/mp4">
+  </video>
+
+  <div class="blue-overlay"></div>
+
+  <div class="funds-box">
+    <div class="money-amount">¥52,143</div>
+    <div class="money-label">Current Funds</div>
+  </div>
+
+  <nav class="p3-menu">
+    <button class="menu-item" data-page="ABOUT ME">ABOUT ME</button>
+    <button class="menu-item" data-page="RULES">RULES</button>
+    <button class="menu-item" data-page="ANIME">ANIME</button>
+    <button class="menu-item" data-page="MANGA / HWA">MANGA / HWA</button>
+    <button class="menu-item" data-page="KINLIST">KINLIST</button>
+    <button class="menu-item" data-page="SOCIALS">SOCIALS
+    <button class="menu-item" data-page="GAMES">GAMES</button>
+    <button class="menu-item" data-page="MUSIC">MUSIC</button>
+  </nav>
+
+  <div class="bottom-guide">
+    <div class="action-text">View Profile</div>
+    <div class="controls-hint">
+      <span>Confirm</span>
+      <span>Close</span>
+    </div>
+  </div>
+</div>
+
+<section class="page-screen" id="page-screen">
+  <button id="back-button" class="back-button">← BACK</button>
+
+  <p class="small-label">PERSONAL DATABASE</p>
+
+  <h1 id="page-title">ABOUT ME</h1>
+
+  <div id="page-description"></div>
+</section>
+
+<div class="rotate-message">
+  <h1>↻</h1>
+  <h2>ROTATE YOUR DEVICE</h2>
+  <p>Please turn your phone sideways.</p>
+</div>
+
+<audio id="bg-music" autoplay loop preload="auto">
+  <source src="https://files.catbox.moe/j2vq72.mp3" type="audio/mpeg">
+</audio>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>
